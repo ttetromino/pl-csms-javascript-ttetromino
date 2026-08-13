@@ -1,122 +1,287 @@
-Standard Ticket Workflow
+# CSMS Git Cheatsheet
+
+## Check Repository Status
+
+```bash
 git status
+```
+
+## Show Current Branch
+
+```bash
+git branch --show-current
+```
+
+## View Remote Repositories
+
+```bash
+git remote -v
+```
+
+## View Recent Commits
+
+```bash
+git log --oneline -5
+```
+
+## Switch to Main
+
+```bash
 git switch main
+```
+
+## Update Main
+
+```bash
 git pull origin main
-git switch -c feature/<ticket-name>
+```
 
-Implement and verify the ticket.
+## Create a Feature Branch
 
-Then:
-
-npm test
-git status
-git diff
-git add .
-git status
-git commit -m "type: short description"
-git push -u origin feature/<ticket-name>
-
-Create a Pull Request when required.
-
-Commit Types
-feat
-fix
-test
-docs
-refactor
-chore
-
-Examples:
-
-feat: implement resident registration
-fix: validate resident identifier
-test: add resident service tests
-docs: update JavaScript project documentation
-refactor: simplify resident service
-chore: establish application architecture
-
-
-Update Main
-git switch main
-git pull origin main
-Create a Ticket Branch
-git switch -c feature/<ticket-name>
+```bash
+git switch -c feature/<ticket>-<short-description>
+```
 
 Example:
 
-git switch -c feature/csms-101-navigation
-Review Changes
+```bash
+git switch -c feature/t01-resident-domain-model
+```
+
+## View Unstaged Changes
+
+```bash
 git diff
-Stage Changes
-git add .
-Commit
-git commit -m "feat: short description"
-Push a New Branch
+```
+
+## Stage a File
+
+```bash
+git add <file>
+```
+
+Example:
+
+```bash
+git add src/models/Resident.js
+```
+
+## Stage Multiple Specific Files
+
+```bash
+git add src/models/Resident.js test/application.test.js
+```
+
+Prefer staging the files that belong to the ticket explicitly.
+
+## Review Staged Changes
+
+```bash
+git diff --staged
+```
+
+## Commit
+
+```bash
+git commit -m "type: short description"
+```
+
+Example:
+
+```bash
+git commit -m "feat: define resident domain model"
+```
+
+## Push a New Branch
+
+```bash
 git push -u origin <branch-name>
-View Recent History
-git log --oneline -5
-Unstage a File
+```
+
+Example:
+
+```bash
+git push -u origin feature/t01-resident-domain-model
+```
+
+## Push an Existing Tracked Branch
+
+```bash
+git push
+```
+
+## Unstage a File
+
+```bash
 git restore --staged <file>
-Restore an Unstaged File
+```
+
+This removes the file from the staging area without deleting your working copy changes.
+
+## Restore an Unstaged File
+
+```bash
 git restore <file>
+```
 
-Use restore carefully.
+Use this carefully.
 
-Commit Types
+Uncommitted changes in that file will be discarded.
+
+## Standard Ticket Workflow
+
+1. Check your repository.
+
+```bash
+git status
+```
+
+2. Switch to `main`.
+
+```bash
+git switch main
+```
+
+3. Update `main`.
+
+```bash
+git pull origin main
+```
+
+4. Create the required ticket branch.
+
+```bash
+git switch -c feature/<ticket>-<description>
+```
+
+5. Implement the ticket.
+
+6. Run automated tests.
+
+```bash
+npm test
+```
+
+7. Review your changes.
+
+```bash
+git status
+git diff
+```
+
+8. Stage only the required files.
+
+```bash
+git add <files>
+```
+
+9. Review the staged changes.
+
+```bash
+git diff --staged
+```
+
+10. Commit.
+
+```bash
+git commit -m "<required commit message>"
+```
+
+11. Push.
+
+```bash
+git push -u origin <branch-name>
+```
+
+12. Create the required Pull Request.
+
+## Commit Types
+
+Common commit types:
+
+```text
 feat
 fix
 test
 docs
 refactor
 chore
-JavaScript Verification Commands
-npm test
-npm start
-npm run dev
+```
 
-Before every commit:
+Examples:
 
-npm test
-git status
-git diff
+```text
+feat: define resident domain model
+fix: correct request validation
+test: add service request tests
+docs: update JavaScript project documentation
+refactor: simplify resident service
+chore: update development configuration
+```
 
+## Before Starting a Ticket
 
-
-Before Starting
+```bash
 git switch main
 git pull origin main
 git status
-Before Committing
+```
+
+## Before Committing
+
+```bash
 npm test
 git status
 git diff
-Before Pushing
+```
+
+## Before Pushing
+
+```bash
 npm test
 git status
-Pull Request Requirements
-correct ticket reference
-implementation summary
-completed acceptance criteria
-test results
-manual verification
-no unrelated changes
-meaningful commits
-Main Branch
+git log --oneline -5
+```
 
-The main branch represents the stable integrated application.
+## Pull Request Review
 
-Normal ticket development should occur in a separate branch.
+Before submitting a Pull Request, confirm:
 
-Ticket Completion
+- correct ticket reference
+- correct feature branch
+- implementation summary provided
+- acceptance criteria completed
+- tests pass
+- manual verification completed when required
+- no unrelated changes
+- meaningful commit message
+- no generated dependency files committed
+
+## Main Branch
+
+The `main` branch represents the stable integrated application.
+
+Normal ticket development should occur in a separate feature branch.
+
+## Important Rules
+
+- Do not perform normal activity development directly on `main`.
+- Do not commit `node_modules/`.
+- Do not commit unrelated files.
+- Do not use another student's repository.
+- Do not force push unless specifically instructed.
+- Do not rewrite Git history unless specifically instructed.
+- Always inspect `git status` before committing.
+- Always inspect `git diff --staged` before committing.
+
+## Ticket Completion
 
 A ticket is ready when:
 
-The requirement works
-+
-Acceptance criteria are satisfied
-+
-Tests pass
-+
-Changes are traceable
-+
-The required workflow was followed
+1. The requirement works.
+2. Acceptance criteria are satisfied.
+3. Automated tests pass.
+4. Existing behavior still works.
+5. Changes are traceable in Git.
+6. Only intended files are included.
+7. The required development workflow was followed.
