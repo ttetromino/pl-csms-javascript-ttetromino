@@ -7,19 +7,19 @@ This file identifies the student responsible for this repository throughout the 
 ## Developer Information
 
 **Full Name:**  
-Enter your full name here.
+Josh Leonard O. Mendoza
 
 **Student Number:**  
-Enter your student number here.
+c-1-241-02626
 
 **Program / Course:**  
-Enter your program or course here.
+BS in Computer Science - Programming Languages Lab
 
 **Section:**  
-Enter your section here.
+J4A
 
 **GitHub Username:**  
-Enter your GitHub username here.
+@ttetromino
 
 ## Primary Technology
 
@@ -32,20 +32,20 @@ Enter your GitHub username here.
 ## Development Environment
 
 **Operating System:**  
-Windows / macOS / Linux
+Windows
 
 **Primary IDE or Editor:**  
-Enter your IDE or editor here.
+Visual Studio Code
 
 **Node.js Version:**  
-Enter the output of:
+v24.20.0
 
 ```bash
 node --version
 ```
 
 **npm Version:**  
-Enter the output of:
+11.19.0
 
 ```bash
 npm --version
@@ -55,20 +55,20 @@ npm --version
 
 Briefly describe your current programming experience.
 
-Enter your answer here.
+I am somewhat confident with my coding experience, having used quite a variety of languages. Though I have some experience in using Javascript from building websites, I haven't really dived deep into it. 
 
 ## Learning Goal
 
 What do you want to learn or improve during this course?
 
-Enter your answer here.
+I would like to be more familliar with using Javascript and its intricacies.
 
 ## Academic Integrity Confirmation
 
-- [ ] I completed this profile using my own information.
-- [ ] I understand that I must be able to explain all work I submit.
-- [ ] I understand that every commit should represent work I understand.
-- [ ] I will disclose outside or AI assistance when required by the course.
+- [/] I completed this profile using my own information.
+- [/] I understand that I must be able to explain all work I submit.
+- [/] I understand that every commit should represent work I understand.
+- [/] I will disclose outside or AI assistance when required by the course.
 
 ## Developer Statement
 
@@ -77,7 +77,6 @@ I understand that this repository represents my individual development work for 
 I am responsible for understanding the code, tests, commits, branches, Pull Requests, and technical decisions submitted through this repository.
 
 **Developer Name:**  
-Enter your name here.
-
+Josh Leonard O. Mendoza
 **Date Completed:**  
-Enter the date here.
+August 29, 2026
