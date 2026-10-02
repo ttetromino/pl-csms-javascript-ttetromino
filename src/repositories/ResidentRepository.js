@@ -100,6 +100,30 @@ export class ResidentRepository {
     );
   }
 
+  update(resident) {
+    const stmt = this.db.prepare(`
+      UPDATE residents
+      SET
+        first_name = ?,
+        last_name = ?,
+        address = ?,
+        contact_number = ?,
+        email = ?
+      WHERE id = ?
+    `);
+
+    stmt.run(
+      resident.firstName,
+      resident.lastName,
+      resident.address,
+      resident.contactNumber,
+      resident.email,
+      resident.id
+    );
+
+    return this.findById(resident.id);
+  }
+
   mapRowToResident(row) {
     return new Resident({
       id: row.id,
