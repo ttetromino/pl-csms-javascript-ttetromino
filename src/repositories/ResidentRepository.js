@@ -124,6 +124,18 @@ export class ResidentRepository {
     return this.findById(resident.id);
   }
 
+  deactivateById(id) {
+    const stmt = this.db.prepare(`
+      UPDATE residents
+      SET status = 'Inactive'
+      WHERE id = ?
+    `);
+
+    stmt.run(id);
+
+    return this.findById(id);
+  }
+
   mapRowToResident(row) {
     return new Resident({
       id: row.id,
