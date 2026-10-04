@@ -22,6 +22,15 @@ export function createDatabase(dbPath = "./data/csms.db") {
       email TEXT NOT NULL,
       status TEXT NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS service_requests (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      resident_id INTEGER NOT NULL,
+      service_type TEXT NOT NULL,
+      description TEXT NOT NULL,
+      date_requested TEXT NOT NULL,
+      status TEXT NOT NULL
+    );
   `);
 
   return db;
