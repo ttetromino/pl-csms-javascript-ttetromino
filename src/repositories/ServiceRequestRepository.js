@@ -38,6 +38,18 @@ export class ServiceRequestRepository {
     return this.mapRowToServiceRequest(row);
   }
 
+  updateStatus(id, status) {
+    const stmt = this.db.prepare(`
+      UPDATE service_requests
+      SET status = ?
+      WHERE id = ?
+    `);
+
+    stmt.run(status, id);
+
+    return this.findById(id);
+  }
+
   mapRowToServiceRequest(row) {
     return new ServiceRequest({
       id: row.id,
