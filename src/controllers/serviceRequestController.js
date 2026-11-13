@@ -7,7 +7,6 @@ import { ServiceRequestStatusService } from "../services/ServiceRequestStatusSer
 import { ServiceRequestQueryService } from "../services/ServiceRequestQueryService.js";
 import { ServiceRequest } from "../models/ServiceRequest.js";
 
-// Default production database
 let db = createDatabase();
 let residentRepository = new ResidentRepository(db);
 let serviceRequestRepository = new ServiceRequestRepository(db);
@@ -16,7 +15,6 @@ let submissionService = new ServiceRequestSubmissionService(serviceRequestValida
 let statusService = new ServiceRequestStatusService(serviceRequestRepository);
 let queryService = new ServiceRequestQueryService(serviceRequestRepository);
 
-// Allow dependency injection for testing
 export function setServiceRequestDatabase(testDb) {
   db = testDb;
   residentRepository = new ResidentRepository(db);
@@ -180,7 +178,6 @@ export function updateServiceRequestStatus(req, res) {
       );
     }
 
-    // Invalid transition or unsupported status — stay on details page with error
     const errorMsg = result.invalidTransition
       ? "Invalid status transition."
       : "Unsupported status.";
