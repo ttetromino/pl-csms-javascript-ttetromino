@@ -375,3 +375,78 @@ textarea:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
+
+/* Dashboard Styles */
+.dashboard-section {
+  margin: 2rem 0;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dashboard-section:last-of-type {
+  border-bottom: none;
+}
+
+.dashboard-section h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 100px;
+  padding: 1.25rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.summary-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.summary-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summary-card-active   { border-color: #6ee7b7; background: #d1fae5; }
+.summary-card-active .summary-value { color: #065f46; }
+
+.summary-card-inactive { border-color: #fca5a5; background: #fee2e2; }
+.summary-card-inactive .summary-value { color: #991b1b; }
+
+.summary-card-open     { border-color: #93c5fd; background: #dbeafe; }
+.summary-card-open .summary-value { color: #1e40af; }
+
+.summary-card-pending  { border-color: #93c5fd; background: #eff6ff; }
+.summary-card-pending .summary-value { color: #1d4ed8; }
+
+.summary-card-inprogress { border-color: #fde68a; background: #fef9c3; }
+.summary-card-inprogress .summary-value { color: #854d0e; }
+
+.summary-card-completed { border-color: #6ee7b7; background: #ecfdf5; }
+.summary-card-completed .summary-value { color: #065f46; }
+
+.summary-card-cancelled { border-color: #d1d5db; background: #f3f4f6; }
+.summary-card-cancelled .summary-value { color: #374151; }
+
+.dashboard-action {
+  margin-top: 0.75rem;
+}
