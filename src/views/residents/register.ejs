@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Resident - CSMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Register Resident</h1>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="error-message">
+          <p><strong>Please correct the following errors:</strong></p>
+          <ul>
+            <% errors.forEach(error => { %>
+              <li>
+                <% if (error === 'firstName') { %>
+                  First name is required
+                <% } else if (error === 'lastName') { %>
+                  Last name is required
+                <% } else if (error === 'address') { %>
+                  Address is required
+                <% } else if (error === 'contactNumber') { %>
+                  Contact number must follow 09XXXXXXXXX format
+                <% } else if (error === 'email') { %>
+                  Email is invalid
+                <% } else { %>
+                  <%= error %>
+                <% } %>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form method="POST" action="/residents/register" class="resident-form">
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            name="firstName" 
+            value="<%= formData.firstName || '' %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            name="lastName" 
+            value="<%= formData.lastName || '' %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input 
+            type="text" 
+            id="address" 
+            name="address" 
+            value="<%= formData.address || '' %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contactNumber">Contact Number:</label>
+          <input 
+            type="text" 
+            id="contactNumber" 
+            name="contactNumber" 
+            value="<%= formData.contactNumber || '' %>"
+            placeholder="09XXXXXXXXX"
+            pattern="09\d{9}"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            value="<%= formData.email || '' %>"
+            required
+          >
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="button">Register Resident</button>
+          <a href="/residents" class="button button-secondary">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
