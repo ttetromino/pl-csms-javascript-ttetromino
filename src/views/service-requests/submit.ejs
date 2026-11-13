@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Service Request - CSMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <nav class="module-nav">
+        <a href="/residents">Residents</a>
+        <a href="/service-requests" class="active">Service Requests</a>
+      </nav>
+
+      <h1>Submit Service Request</h1>
+
+      <% if (eligibilityError) { %>
+        <div class="error-message">
+          <p><%= eligibilityError %></p>
+        </div>
+      <% } %>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="error-message">
+          <p><strong>Please correct the following errors:</strong></p>
+          <ul>
+            <% errors.forEach(error => { %>
+              <li>
+                <% if (error === 'residentId') { %>
+                  Resident ID must be a valid positive number
+                <% } else if (error === 'serviceType') { %>
+                  Service type is required
+                <% } else if (error === 'description') { %>
+                  Description is required
+                <% } else if (error === 'dateRequested') { %>
+                  Date requested must be a valid date in YYYY-MM-DD format
+                <% } else if (error === 'status') { %>
+                  Status must be Pending for a new submission
+                <% } else { %>
+                  <%= error %>
+                <% } %>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form method="POST" action="/service-requests/new" class="resident-form">
+        <div class="form-group">
+          <label for="residentId">Resident ID:</label>
+          <input
+            type="number"
+            id="residentId"
+            name="residentId"
+            value="<%= formData.residentId || '' %>"
+            min="1"
+            required
+          >
+          <small class="field-hint">
+            Need to find a Resident ID? <a href="/residents">View Residents</a>
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label for="serviceType">Service Type:</label>
+          <input
+            type="text"
+            id="serviceType"
+            name="serviceType"
+            value="<%= formData.serviceType || '' %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="4"
+            required
+          ><%= formData.description || '' %></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="dateRequested">Date Requested:</label>
+          <input
+            type="date"
+            id="dateRequested"
+            name="dateRequested"
+            value="<%= formData.dateRequested || '' %>"
+            required
+          >
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="button">Submit Service Request</button>
+          <a href="/service-requests" class="button button-secondary">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

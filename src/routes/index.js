@@ -10,6 +10,13 @@ import {
   updateResident,
   deactivateResident
 } from "../controllers/residentController.js";
+import {
+  listServiceRequests,
+  showSubmitForm,
+  submitServiceRequest,
+  viewServiceRequest,
+  updateServiceRequestStatus
+} from "../controllers/serviceRequestController.js";
 
 const router = Router();
 
@@ -22,5 +29,11 @@ router.post("/residents/register", registerResident);
 router.get("/residents/:id/edit", showEditForm);
 router.post("/residents/:id/edit", updateResident);
 router.post("/residents/:id/deactivate", deactivateResident);
+
+router.get("/service-requests", listServiceRequests);
+router.get("/service-requests/new", showSubmitForm);
+router.post("/service-requests/new", submitServiceRequest);
+router.get("/service-requests/:id", viewServiceRequest);
+router.post("/service-requests/:id/status", updateServiceRequestStatus);
 
 export default router;
