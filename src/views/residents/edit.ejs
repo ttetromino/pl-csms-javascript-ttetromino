@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Resident - CSMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <h1>Edit Resident</h1>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="error-message">
+          <p><strong>Please correct the following errors:</strong></p>
+          <ul>
+            <% errors.forEach(error => { %>
+              <li>
+                <% if (error === 'firstName') { %>
+                  First name is required
+                <% } else if (error === 'lastName') { %>
+                  Last name is required
+                <% } else if (error === 'address') { %>
+                  Address is required
+                <% } else if (error === 'contactNumber') { %>
+                  Contact number must follow 09XXXXXXXXX format
+                <% } else if (error === 'email') { %>
+                  Email is invalid
+                <% } else { %>
+                  <%= error %>
+                <% } %>
+              </li>
+            <% }) %>
+          </ul>
+        </div>
+      <% } %>
+
+      <form method="POST" action="/residents/<%= resident.id %>/edit" class="resident-form">
+        <div class="form-group readonly-field">
+          <label for="id">Resident ID:</label>
+          <input 
+            type="text" 
+            id="id" 
+            value="<%= resident.id %>"
+            readonly
+            disabled
+          >
+        </div>
+
+        <div class="form-group readonly-field">
+          <label for="status">Status:</label>
+          <input 
+            type="text" 
+            id="status" 
+            value="<%= resident.status %>"
+            readonly
+            disabled
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input 
+            type="text" 
+            id="firstName" 
+            name="firstName" 
+            value="<%= resident.firstName %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input 
+            type="text" 
+            id="lastName" 
+            name="lastName" 
+            value="<%= resident.lastName %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input 
+            type="text" 
+            id="address" 
+            name="address" 
+            value="<%= resident.address %>"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contactNumber">Contact Number:</label>
+          <input 
+            type="text" 
+            id="contactNumber" 
+            name="contactNumber" 
+            value="<%= resident.contactNumber %>"
+            placeholder="09XXXXXXXXX"
+            pattern="09\d{9}"
+            required
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            value="<%= resident.email %>"
+            required
+          >
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="button">Update Resident</button>
+          <a href="/residents" class="button button-secondary">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
