@@ -16,7 +16,6 @@ let queryService = new ResidentQueryService(residentRepository);
 let updateService = new ResidentUpdateService(residentValidator, residentRepository);
 let deactivationService = new ResidentDeactivationService(residentRepository);
 
-// Allow dependency injection for testing
 export function setDatabase(testDb) {
   db = testDb;
   residentRepository = new ResidentRepository(db);
