@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSMS Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="card">
+      <nav class="module-nav">
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="/residents">Residents</a>
+        <a href="/service-requests">Service Requests</a>
+      </nav>
+
+      <h1>CSMS Dashboard</h1>
+
+      <!-- Resident Summary -->
+      <div class="dashboard-section">
+        <h2>Residents</h2>
+        <div class="summary-cards">
+          <div class="summary-card">
+            <div class="summary-value"><%= residents.total %></div>
+            <div class="summary-label">Total Residents</div>
+          </div>
+          <div class="summary-card summary-card-active">
+            <div class="summary-value"><%= residents.active %></div>
+            <div class="summary-label">Active</div>
+          </div>
+          <div class="summary-card summary-card-inactive">
+            <div class="summary-value"><%= residents.inactive %></div>
+            <div class="summary-label">Inactive</div>
+          </div>
+        </div>
+        <div class="dashboard-action">
+          <a href="/residents" class="button button-small">Manage Residents</a>
+        </div>
+      </div>
+
+      <!-- Service Request Summary -->
+      <div class="dashboard-section">
+        <h2>Service Requests</h2>
+        <div class="summary-cards">
+          <div class="summary-card">
+            <div class="summary-value"><%= serviceRequests.total %></div>
+            <div class="summary-label">Total</div>
+          </div>
+          <div class="summary-card summary-card-open">
+            <div class="summary-value"><%= serviceRequests.open %></div>
+            <div class="summary-label">Open</div>
+          </div>
+          <div class="summary-card summary-card-pending">
+            <div class="summary-value"><%= serviceRequests.pending %></div>
+            <div class="summary-label">Pending</div>
+          </div>
+          <div class="summary-card summary-card-inprogress">
+            <div class="summary-value"><%= serviceRequests.inProgress %></div>
+            <div class="summary-label">In Progress</div>
+          </div>
+          <div class="summary-card summary-card-completed">
+            <div class="summary-value"><%= serviceRequests.completed %></div>
+            <div class="summary-label">Completed</div>
+          </div>
+          <div class="summary-card summary-card-cancelled">
+            <div class="summary-value"><%= serviceRequests.cancelled %></div>
+            <div class="summary-label">Cancelled</div>
+          </div>
+        </div>
+        <div class="dashboard-action">
+          <a href="/service-requests" class="button button-small">Manage Service Requests</a>
+        </div>
+      </div>
+
+      <!-- Recent Service Requests -->
+      <div class="dashboard-section">
+        <h2>Recent Service Requests</h2>
+
+        <% if (recentServiceRequests.length === 0) { %>
+          <p class="message">No Service Requests available.</p>
+        <% } else { %>
+          <table class="residents-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Resident ID</th>
+                <th>Service Type</th>
+                <th>Date Requested</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% recentServiceRequests.forEach(sr => { %>
+                <tr>
+                  <td><%= sr.id %></td>
+                  <td><%= sr.residentId %></td>
+                  <td><%= sr.serviceType %></td>
+                  <td><%= sr.dateRequested %></td>
+                  <td>
+                    <span class="status-badge status-<%= sr.status.toLowerCase().replace(' ', '-') %>">
+                      <%= sr.status %>
+                    </span>
+                  </td>
+                  <td>
+                    <a href="/service-requests/<%= sr.id %>" class="button button-small">View</a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+
+      <div class="footer-links">
+        <a href="/">← Back to Home</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

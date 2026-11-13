@@ -17,11 +17,13 @@ import {
   viewServiceRequest,
   updateServiceRequestStatus
 } from "../controllers/serviceRequestController.js";
+import { showDashboard } from "../controllers/dashboardController.js";
 
 const router = Router();
 
 router.get("/", showHome);
 router.get("/health", showHealth);
+router.get("/dashboard", showDashboard);
 
 router.get("/residents", listResidents);
 router.get("/residents/register", showRegisterForm);

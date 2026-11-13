@@ -92,6 +92,33 @@ export class ServiceRequestRepository {
     return rows.map(row => this.mapRowToServiceRequest(row));
   }
 
+  countAll() {
+    const stmt = this.db.prepare(`
+      SELECT COUNT(*) AS total FROM service_requests
+    `);
+    const row = stmt.get();
+    return row.total;
+  }
+
+  countByStatus(status) {
+    const stmt = this.db.prepare(`
+      SELECT COUNT(*) AS total FROM service_requests WHERE status = ?
+    `);
+    const row = stmt.get(status);
+    return row.total;
+  }
+
+  findRecent(limit) {
+    const stmt = this.db.prepare(`
+      SELECT id, resident_id, service_type, description, date_requested, status
+      FROM service_requests
+      ORDER BY date_requested DESC, id DESC
+      LIMIT ?
+    `);
+    const rows = stmt.all(limit);
+    return rows.map(row => this.mapRowToServiceRequest(row));
+  }
+
   mapRowToServiceRequest(row) {
     return new ServiceRequest({
       id: row.id,
