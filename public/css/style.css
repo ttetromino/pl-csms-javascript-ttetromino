@@ -450,3 +450,23 @@ textarea:focus {
 .dashboard-action {
   margin-top: 0.75rem;
 }
+
+/* Release Version Display */
+.version-badge {
+  margin-left: auto;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f3f4f6;
+  border-radius: 9999px;
+}
+
+.version-footer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  text-align: center;
+}

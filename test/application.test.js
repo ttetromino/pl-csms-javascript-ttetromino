@@ -26,7 +26,7 @@ test("home page displays the CSMS starter details", async () => {
 
   assert.match(
     response.text,
-    /Sprint 0 - Developer Onboarding/
+    /Sprint 6 - Final Release/
   );
 
   assert.match(
@@ -34,7 +34,7 @@ test("home page displays the CSMS starter details", async () => {
     /JavaScript with Express\.js/
   );
 
-  assert.match(response.text, /0\.1\.0/);
+  assert.match(response.text, /1\.0\.0/);
 });
 
 test("health endpoint returns the expected payload", async () => {
@@ -44,8 +44,8 @@ test("health endpoint returns the expected payload", async () => {
 
   assert.deepEqual(response.body, {
     status: "ok",
-    application: "Community Services Management System",
-    version: "0.1.0"
+    application: "CSMS",
+    version: "1.0.0"
   });
 });
 

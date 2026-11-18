@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import express from "express";
 
+import { applicationConfig } from "./config/application.js";
 import { notFound } from "./middleware/notFound.js";
 import mainRoutes from "./routes/index.js";
 
@@ -21,6 +22,10 @@ export function createApp() {
 
   app.set("views", path.join(currentDirectory, "views"));
   app.set("view engine", "ejs");
+
+  // Make release version available to all EJS templates from single source of truth
+  app.locals.applicationVersion = applicationConfig.version;
+  app.locals.applicationShortName = applicationConfig.shortName;
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
